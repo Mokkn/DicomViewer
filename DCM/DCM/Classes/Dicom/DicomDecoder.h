@@ -53,6 +53,9 @@
 #define NUMBER_OF_SERIES_RELATED_INSTANCES  0x00201209
 #define MODALITY                    0x00080060
 
+#define SLICE_LOCATION              0x00201041
+#define SLICE_NUMBER                0x00280008
+
 #define SOP_INSTANCE_UID            0x00080018
 #define ACQUISITION_DATE            0x00080022
 #define CONTENT_DATE                0x00080023

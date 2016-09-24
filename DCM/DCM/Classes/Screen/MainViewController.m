@@ -33,7 +33,7 @@
     info = [self.dicomDecoder infoFor:MODALITY];
     NSLog(@"Modality: %@", info);
     
-    info = [self.dicomDecoder infoFor:SERIES_DATE];
+    info = [self.dicomDecoder infoFor:SLICE_NUMBER];
     NSLog(@"%@", info);
     
     info = [NSString stringWithFormat:@"WW/WL: %ld / %ld", (long)self.dicom2dView.winWidth, (long)self.dicom2dView.winCenter];
