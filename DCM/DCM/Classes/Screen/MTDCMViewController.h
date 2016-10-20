@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MTDCMBaseViewController.h"
 
-@interface MainViewController : UIViewController
+@interface MTDCMViewController : MTDCMBaseViewController
 
 @end

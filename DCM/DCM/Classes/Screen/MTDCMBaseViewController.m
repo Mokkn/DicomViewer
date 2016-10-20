@@ -1,54 +1,35 @@
 //
-//  MainViewController.m
+//  MTDCMBaseViewController.m
 //  DCM
 //
-//  Created by 本谷崇之 on 2016/09/22.
+//  Created by 本谷崇之 on 2016/10/20.
 //  Copyright © 2016年 MototaniTakayuki. All rights reserved.
 //
 
-#import "MainViewController.h"
-#import "Dicom2DView.h"
-#import "DicomDecoder.h"
+#import "MTDCMBaseViewController.h"
 
-@interface MainViewController ()
-
-@property (weak, nonatomic) IBOutlet Dicom2DView *dicom2dView;
-@property (nonatomic) DicomDecoder *dicomDecoder;
-@property (nonatomic) UIPanGestureRecognizer *panGesture;
-@property (nonatomic) CGAffineTransform prevTransform;
-@property (nonatomic) CGPoint startPoint;
+@interface MTDCMBaseViewController ()
 
 @end
 
-@implementation MainViewController
+@implementation MTDCMBaseViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSString * dicomPath = [[NSBundle mainBundle] pathForResource:@"test" ofType: @"dcm"];
-    [self decodeAndDisplay:dicomPath];
-    
-    NSString * info = [self.dicomDecoder infoFor:PATIENT_NAME];
-    NSLog(@"Patient: %@", info);
-    
-    info = [self.dicomDecoder infoFor:MODALITY];
-    NSLog(@"Modality: %@", info);
-    
-    info = [self.dicomDecoder infoFor:SLICE_NUMBER];
-    NSLog(@"%@", info);
-    
-    info = [NSString stringWithFormat:@"WW/WL: %ld / %ld", (long)self.dicom2dView.winWidth, (long)self.dicom2dView.winCenter];
-    NSLog(@"%@", info);
-    
-    self.panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
-    self.panGesture.maximumNumberOfTouches = 1;
-    [self.dicom2dView addGestureRecognizer:self.panGesture];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
--(IBAction) handlePanGesture:(UIPanGestureRecognizer *)sender {
+- (void)decodeAndDisplay:(NSString *)path {
+    self.dicomDecoder = [[DicomDecoder alloc] init];
+    [self.dicomDecoder setDicomFilename:path];
+    
+    [self displayWith:self.dicomDecoder.windowWidth windowCenter:self.dicomDecoder.windowCenter];
+}
+
+- (IBAction)handlePanGesture:(UIPanGestureRecognizer *)sender {
     UIGestureRecognizerState state = [sender state];
     
     if (state == UIGestureRecognizerStateBegan) {
@@ -62,7 +43,7 @@
         CGFloat offsetY     = location.y - self.startPoint.y;
         self.startPoint          = location;
         
-//         adjust window width/level
+        //         adjust window width/level
         
         self.dicom2dView.winWidth  += offsetX * self.dicom2dView.changeValWidth;
         self.dicom2dView.winCenter += offsetY * self.dicom2dView.changeValCentre;
@@ -84,13 +65,6 @@
         //TODO: 現在のww, wlを保持して次の画像にも適応する
         [self displayWith:self.dicom2dView.winWidth windowCenter:self.dicom2dView.winCenter];
     }
-}
-
-- (void)decodeAndDisplay:(NSString *)path {
-    self.dicomDecoder = [[DicomDecoder alloc] init];
-    [self.dicomDecoder setDicomFilename:path];
-    
-    [self displayWith:self.dicomDecoder.windowWidth windowCenter:self.dicomDecoder.windowCenter];
 }
 
 - (void) displayWith:(NSInteger)windowWidth windowCenter:(NSInteger)windowCenter {
@@ -127,12 +101,12 @@
         }
         
         [self.dicom2dView setPixels8:pixels8
-                          width:imageWidth
-                         height:imageHeight
-                    windowWidth:winWidth
-                   windowCenter:winCenter
-                samplesPerPixel:samplesPerPixel
-                    resetScroll:YES];
+                               width:imageWidth
+                              height:imageHeight
+                         windowWidth:winWidth
+                        windowCenter:winCenter
+                     samplesPerPixel:samplesPerPixel
+                         resetScroll:YES];
         needsDisplay = YES;
     }
     if (samplesPerPixel == 1 && bitDepth == 16) {
@@ -155,12 +129,12 @@
         self.dicom2dView.signed16Image = signedImage;
         
         [self.dicom2dView setPixels16:pixels16
-                           width:imageWidth
-                          height:imageHeight
-                     windowWidth:winWidth
-                    windowCenter:winCenter
-                 samplesPerPixel:samplesPerPixel
-                     resetScroll:YES];
+                                width:imageWidth
+                               height:imageHeight
+                          windowWidth:winWidth
+                         windowCenter:winCenter
+                      samplesPerPixel:samplesPerPixel
+                          resetScroll:YES];
         
         needsDisplay = YES;
     }
@@ -183,24 +157,25 @@
         }
         
         [self.dicom2dView setPixels8:pixels24
-                          width:imageWidth
-                         height:imageHeight
-                    windowWidth:winWidth
-                   windowCenter:winCenter
-                samplesPerPixel:samplesPerPixel
-                    resetScroll:YES];
+                               width:imageWidth
+                              height:imageHeight
+                         windowWidth:winWidth
+                        windowCenter:winCenter
+                     samplesPerPixel:samplesPerPixel
+                         resetScroll:YES];
         
         needsDisplay = YES;
     }
     
     if (needsDisplay) {
-        CGFloat x = (self.view.frame.size.width - imageWidth) /2;
-        CGFloat y = (self.view.frame.size.height - imageHeight) /2;
-        self.dicom2dView.frame = CGRectMake(x, y, imageWidth, imageHeight);
+//        CGFloat x = (self.view.frame.size.width - imageWidth) /2;
+//        CGFloat y = (self.view.frame.size.height - imageHeight) /2;
+//        self.dicom2dView.frame = CGRectMake(x, y, imageWidth, imageHeight);
         [self.dicom2dView setNeedsDisplay];
         
         NSString * info = [NSString stringWithFormat:@"WW/WL: %ld / %ld", (long)self.dicom2dView.winWidth, (long)self.dicom2dView.winCenter];
         NSLog(@"%@", info);
     }
 }
+
 @end
