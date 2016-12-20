@@ -1,8 +1,8 @@
 //
-//  MTDCMBaseViewController.h
+//  DicomPlayView.h
 //  DCM
 //
-//  Created by 本谷崇之 on 2016/10/20.
+//  Created by Mototani Takayuki on 2016/12/21.
 //  Copyright © 2016年 MototaniTakayuki. All rights reserved.
 //
 
@@ -10,17 +10,16 @@
 #import "Dicom2DView.h"
 #import "DicomDecoder.h"
 
-@interface MTDCMBaseViewController : UIViewController
-
-@property (weak, nonatomic) IBOutlet Dicom2DView *dicom2dView;
+@interface DicomPlayView : Dicom2DView
 
 @property (nonatomic) DicomDecoder *dicomDecoder;
 @property (nonatomic) UIPanGestureRecognizer *panGesture;
 @property (nonatomic) CGAffineTransform prevTransform;
 @property (nonatomic) CGPoint startPoint;
+@property (nonatomic) double currentWinWidth;
+@property (nonatomic) double currentWinCentre;
 
 - (void)decodeAndDisplay:(NSString *)path;
-- (IBAction)handlePanGesture:(UIPanGestureRecognizer *)sender;
 - (void) displayWith:(NSInteger)windowWidth windowCenter:(NSInteger)windowCenter;
 
 @end

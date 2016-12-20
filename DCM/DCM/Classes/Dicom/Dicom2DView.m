@@ -73,7 +73,7 @@
     winMin = winMax - winWidth;
 }
 
-- (void) resetImage {
+- (void)resetImage {
     if (colorspace) {
         CGColorSpaceRelease(colorspace);
         colorspace = NULL;
@@ -91,7 +91,7 @@
 
 // Create a bitmap on the fly, using 8-bit grayscale pixel data
 //
-- (void) createImage8 {
+- (void)createImage8 {
     if (!pix8) {
         return;
     }
@@ -121,7 +121,7 @@
 
 // Create a bitmap on the fly, using 16-bit grayscale pixel data
 //
-- (void) createImage16 {
+- (void)createImage16 {
     if (!pix16) {
         return;
     }
@@ -151,7 +151,7 @@
 
 // Create a RGBA bitmap on the fly, using 8-bit RGB pixel data
 //
-- (void) createImage24 {
+- (void)createImage24 {
     if (!pix24) {
         return;
     }

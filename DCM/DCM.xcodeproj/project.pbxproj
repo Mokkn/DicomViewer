@@ -18,7 +18,7 @@
 		E43284971D940C8600711ACD /* Dicom2DView.m in Sources */ = {isa = PBXBuildFile; fileRef = E43284961D940C8600711ACD /* Dicom2DView.m */; };
 		E43284991D940CFC00711ACD /* DicomDictionary.plist in Resources */ = {isa = PBXBuildFile; fileRef = E43284981D940CFC00711ACD /* DicomDictionary.plist */; };
 		E432849D1D94169A00711ACD /* test.dcm in Resources */ = {isa = PBXBuildFile; fileRef = E432849C1D94169A00711ACD /* test.dcm */; };
-		E4CC74DA1DB8E3C3005789AC /* MTDCMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4CC74D91DB8E3C3005789AC /* MTDCMBaseViewController.m */; };
+		E48F9AC11E09800B00C717D4 /* DicomPlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = E48F9AC01E09800B00C717D4 /* DicomPlayView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,8 +41,8 @@
 		E43284981D940CFC00711ACD /* DicomDictionary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DicomDictionary.plist; sourceTree = "<group>"; };
 		E432849A1D940F5C00711ACD /* Prefix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.h; sourceTree = "<group>"; };
 		E432849C1D94169A00711ACD /* test.dcm */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.dcm; sourceTree = "<group>"; };
-		E4CC74D81DB8E3C3005789AC /* MTDCMBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTDCMBaseViewController.h; sourceTree = "<group>"; };
-		E4CC74D91DB8E3C3005789AC /* MTDCMBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTDCMBaseViewController.m; sourceTree = "<group>"; };
+		E48F9ABF1E09800B00C717D4 /* DicomPlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DicomPlayView.h; sourceTree = "<group>"; };
+		E48F9AC01E09800B00C717D4 /* DicomPlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DicomPlayView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +116,8 @@
 				E43284931D940C7000711ACD /* DicomDictionary.m */,
 				E43284951D940C8600711ACD /* Dicom2DView.h */,
 				E43284961D940C8600711ACD /* Dicom2DView.m */,
+				E48F9ABF1E09800B00C717D4 /* DicomPlayView.h */,
+				E48F9AC01E09800B00C717D4 /* DicomPlayView.m */,
 			);
 			path = Dicom;
 			sourceTree = "<group>";
@@ -125,8 +127,6 @@
 			children = (
 				E432848C1D940BD200711ACD /* MTDCMViewController.h */,
 				E432848D1D940BD200711ACD /* MTDCMViewController.m */,
-				E4CC74D81DB8E3C3005789AC /* MTDCMBaseViewController.h */,
-				E4CC74D91DB8E3C3005789AC /* MTDCMBaseViewController.m */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -224,10 +224,10 @@
 				E43284761D940B4B00711ACD /* AppDelegate.m in Sources */,
 				E432848E1D940BD200711ACD /* MTDCMViewController.m in Sources */,
 				E43284731D940B4B00711ACD /* main.m in Sources */,
-				E4CC74DA1DB8E3C3005789AC /* MTDCMBaseViewController.m in Sources */,
 				E43284941D940C7000711ACD /* DicomDictionary.m in Sources */,
 				E43284911D940C5900711ACD /* DicomDecoder.mm in Sources */,
 				E43284971D940C8600711ACD /* Dicom2DView.m in Sources */,
+				E48F9AC11E09800B00C717D4 /* DicomPlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
