@@ -122,7 +122,9 @@ const int ID_OFFSET                 = 128;  //location of "DICM"
     
     dicomFileName = [filename copy];
     
-    dicomData = [[NSData alloc] initWithContentsOfFile:dicomFileName];
+//    dicomData = [[NSData alloc] initWithContentsOfFile:dicomFileName];
+    dicomData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:dicomFileName]];
+
     
     if ([dicomData length] == 0) {
         DLog(@" >> Error: Failed to load file %@", filename);
